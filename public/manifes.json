@@ -1,0 +1,15 @@
+{
+  "name": "CoreLinkTech",
+  "short_name": "CoreLink",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050814",
+  "theme_color": "#6cf2ff",
+  "icons": [
+    {
+      "src": "/assets/neon_angel.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
