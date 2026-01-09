@@ -11,13 +11,7 @@ const UmamiAnalytics = () => {
 
     // Startup Logic
     const scriptId = 'umami-script';
-    
-    // OPTION 1: Use Environment Variable (Recommended for security/flexibility)
-    // OPTION 2: Hardcode your ID below if you don't want to use Env Vars
-    // Note: The Website ID is public information, so hardcoding it is safe.
-    const HARDCODED_WEBSITE_ID = ""; // Paste your ID inside the quotes if hardcoding
-    
-    const websiteId = import.meta.env.VITE_UMAMI_WEBSITE_ID || HARDCODED_WEBSITE_ID;
+    const websiteId = import.meta.env.VITE_UMAMI_WEBSITE_ID;
     
     if (websiteId) {
       if (!document.getElementById(scriptId)) {
@@ -30,9 +24,6 @@ const UmamiAnalytics = () => {
         
         console.log('UMAMI ANALYTICS: ACTIVE');
       }
-    } else {
-      // Fallback or warning if env var is missing
-      console.warn('UMAMI ANALYTICS: SKIPPED (Missing VITE_UMAMI_WEBSITE_ID)');
     }
   }, []);
 
