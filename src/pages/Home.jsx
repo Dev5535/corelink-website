@@ -32,12 +32,6 @@ const Home = () => {
               >
                 Explore Software <ArrowRight size={20} />
               </Link>
-              <Link 
-                to="/merch" 
-                className="px-8 py-4 bg-core-secondary/10 border border-core-secondary text-core-secondary rounded hover:bg-core-secondary hover:text-white transition-all duration-300 font-bold"
-              >
-                View Merch
-              </Link>
             </div>
           </motion.div>
         </div>
