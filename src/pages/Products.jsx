@@ -47,10 +47,10 @@ const Products = () => {
     {
       id: 'pdcs',
       name: 'Personal Decision & Control System',
-      price: '£29.99 (One-time)',
+      price: '£29.99/mo',
       desc: 'Master your decision-making with clarity and control. A structured system for personal intelligence and life management.',
       features: ['Decision Clarity', 'Life Management', 'Personal Intelligence'],
-      type: 'onetime-pdcs'
+      type: 'subscription-pdcs'
     },
     {
       id: 'ai-trading',
@@ -222,14 +222,14 @@ const ProductCard = ({ product }) => (
           >
             Subscribe Now
           </a>
-        ) : product.type === 'onetime-pdcs' ? (
+        ) : product.type === 'subscription-pdcs' ? (
           <a
             href="https://corelinktech.lemonsqueezy.com/checkout/buy/eaaf92eb-c6c4-4f24-bf0d-236d363cd90e"
             target="_blank"
             rel="noreferrer"
-            className="block w-full text-center py-3 rounded border font-bold transition-all duration-300 bg-white/5 border-white/20 text-white hover:bg-white/10"
+            className="block w-full text-center py-3 rounded border font-bold transition-all duration-300 bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black"
           >
-            Purchase License
+            Subscribe Now
           </a>
         ) : (
           <Link 
