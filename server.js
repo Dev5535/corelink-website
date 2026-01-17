@@ -65,8 +65,10 @@ const server = http.createServer((req, res) => {
     }
 
     // LOGGING TO STDOUT (Captured by Render)
-    // Format: [VISIT] METHOD URL STATUS
-    console.log(`[VISIT] ${req.method} ${req.url} ${statusCode}`);
+    // Filter out asset requests to only log human visits (HTML pages or root)
+    if (!ext || ext === '.html') {
+       console.log(`[VISIT] ${req.method} ${req.url} ${statusCode} - IP: ${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`);
+    }
   });
 });
 

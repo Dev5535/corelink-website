@@ -125,9 +125,14 @@ const Payments = () => {
             <div className="text-right">
                <div className="text-2xl font-bold text-white mb-2">£29.99</div>
                <div className="text-xs text-gray-500 mb-4">One-time purchase</div>
-               <button className="px-6 py-2 rounded bg-white text-black font-bold hover:bg-gray-200 transition-colors">
+               <a
+                 href="https://corelinktech.lemonsqueezy.com/checkout/buy/8edeac92-fad1-46bd-970a-89a9216aacc8"
+                 target="_blank"
+                 rel="noreferrer"
+                 className="inline-block px-6 py-2 rounded bg-white text-black font-bold hover:bg-gray-200 transition-colors"
+               >
                  Buy License
-               </button>
+               </a>
             </div>
           </div>
         </div>
