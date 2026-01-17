@@ -186,24 +186,33 @@ const ProductCard = ({ product }) => (
             <Lock size={14} />
             <span>Included with CoreLink Yearly Pro</span>
           </div>
-          <Link 
-            to="/payments" 
+          <a
+            href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
+            target="_blank"
+            rel="noreferrer"
             className="block w-full text-center py-3 rounded border font-bold transition-all duration-300 bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black"
           >
             Upgrade to Yearly Pro
-          </Link>
+          </a>
         </>
       ) : (
-        <Link 
-          to={product.type === 'subscription' ? "/payments" : "/contact"} 
-          className={`block w-full text-center py-3 rounded border font-bold transition-all duration-300 ${
-            product.type === 'subscription' 
-              ? 'bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black' 
-              : 'bg-white/5 border-white/20 text-white hover:bg-white/10'
-          }`}
-        >
-          {product.type === 'subscription' ? 'Subscribe Now' : 'Purchase License'}
-        </Link>
+        product.type === 'subscription' ? (
+          <a
+            href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
+            target="_blank"
+            rel="noreferrer"
+            className="block w-full text-center py-3 rounded border font-bold transition-all duration-300 bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black"
+          >
+            Subscribe Now
+          </a>
+        ) : (
+          <Link 
+            to="/contact" 
+            className="block w-full text-center py-3 rounded border font-bold transition-all duration-300 bg-white/5 border-white/20 text-white hover:bg-white/10"
+          >
+            Purchase License
+          </Link>
+        )
       )}
     </div>
   </motion.div>
