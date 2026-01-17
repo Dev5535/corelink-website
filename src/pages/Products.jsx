@@ -54,6 +54,15 @@ const Products = () => {
       type: 'coming-soon'
     },
     {
+      id: 'merch-drop',
+      name: 'Merch (Coming Soon)',
+      price: 'Limited Drops',
+      desc: 'Exclusive merchandise and limited drops planned for future releases. Wear The Future Tech Army.',
+      features: ['Exclusive Designs', 'Limited Drops', 'Tech Army Gear'],
+      badges: ['🚀 Coming Soon'],
+      type: 'coming-soon'
+    },
+    {
       id: 'ai-inbox',
       name: 'AI Inbox & Admin Automation',
       price: 'Yearly Pro Exclusive',
