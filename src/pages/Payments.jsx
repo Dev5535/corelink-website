@@ -34,12 +34,12 @@ const Payments = () => {
             </button>
           </div>
 
-          {/* Core Tier */}
-          <div className="bg-core-surface border border-core-primary/50 rounded-2xl p-8 flex flex-col relative transform md:-translate-y-4 shadow-[0_0_30px_rgba(0,240,255,0.1)]">
-            <div className="absolute top-0 right-0 left-0 bg-core-primary/10 text-core-primary text-xs font-bold py-1 text-center rounded-t-2xl border-b border-core-primary/20">POPULAR</div>
+          {/* Core Tier - Updated */}
+          <div className="bg-core-surface border border-core-primary rounded-2xl p-8 flex flex-col relative transform md:-translate-y-4 shadow-[0_0_40px_rgba(0,240,255,0.15)] group hover:shadow-[0_0_60px_rgba(0,240,255,0.25)] transition-all duration-300">
+            <div className="absolute top-0 right-0 left-0 bg-core-primary text-black text-xs font-bold py-1.5 text-center rounded-t-2xl">MOST POPULAR</div>
             <h3 className="text-xl font-bold text-white mb-2 mt-4">Core Tier</h3>
             <p className="text-gray-400 text-sm mb-6">Standard protection & optimization.</p>
-            <div className="text-3xl font-bold text-core-primary mb-8">£4.99<span className="text-sm font-normal text-gray-500">/mo</span></div>
+            <div className="text-4xl font-bold text-core-primary mb-8">£4.99<span className="text-sm font-normal text-gray-500">/mo</span></div>
             
             <ul className="space-y-4 mb-8 flex-grow">
               <FeatureItem text="CoreLink Optimizer" active={true} highlight />
@@ -54,18 +54,18 @@ const Payments = () => {
               href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
               target="_blank"
               rel="noreferrer"
-              className="w-full inline-block text-center py-3 rounded bg-core-primary text-black font-bold hover:bg-cyan-400 transition-colors shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+              className="w-full inline-block text-center py-4 rounded bg-core-primary text-black font-bold hover:bg-cyan-400 transition-colors shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] transform hover:scale-[1.02]"
             >
               Subscribe Core
             </a>
           </div>
 
-          {/* Pro Tier */}
-          <div className="bg-core-surface border border-core-secondary/50 rounded-2xl p-8 flex flex-col relative overflow-hidden">
-             <div className="absolute -right-12 top-6 rotate-45 bg-core-secondary text-black text-xs font-bold px-12 py-1">ULTIMATE</div>
+          {/* Pro Tier - Updated */}
+          <div className="bg-core-surface border border-core-secondary rounded-2xl p-8 flex flex-col relative overflow-hidden group hover:shadow-[0_0_60px_rgba(188,19,254,0.25)] transition-all duration-300">
+             <div className="absolute -right-12 top-6 rotate-45 bg-core-secondary text-white text-xs font-bold px-12 py-1 shadow-lg">ULTIMATE</div>
             <h3 className="text-xl font-bold text-white mb-2">Pro Tier</h3>
             <p className="text-gray-400 text-sm mb-6">Advanced AI & full automation.</p>
-            <div className="text-3xl font-bold text-core-secondary mb-8">£9.99<span className="text-sm font-normal text-gray-500">/mo</span></div>
+            <div className="text-4xl font-bold text-core-secondary mb-8">£9.99<span className="text-sm font-normal text-gray-500">/mo</span></div>
             
             <ul className="space-y-4 mb-8 flex-grow">
               <FeatureItem text="Everything in Core" active={true} highlight color="secondary" />
@@ -79,18 +79,18 @@ const Payments = () => {
               href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
               target="_blank"
               rel="noreferrer"
-              className="w-full inline-block text-center py-3 rounded bg-core-secondary text-white font-bold hover:bg-purple-600 transition-colors shadow-[0_0_20px_rgba(188,19,254,0.3)]"
+              className="w-full inline-block text-center py-4 rounded bg-core-secondary text-white font-bold hover:bg-purple-600 transition-colors shadow-[0_0_20px_rgba(188,19,254,0.3)] hover:shadow-[0_0_30px_rgba(188,19,254,0.5)] transform hover:scale-[1.02]"
             >
               Subscribe Pro
             </a>
           </div>
 
-          {/* Yearly Tier */}
-          <div className="bg-core-surface border border-amber-400/50 rounded-2xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.1)]">
-             <div className="absolute -right-12 top-6 rotate-45 bg-amber-400 text-black text-xs font-bold px-12 py-1">BEST VALUE</div>
+          {/* Yearly Tier - Updated */}
+          <div className="bg-core-surface border border-amber-400 rounded-2xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.15)] group hover:shadow-[0_0_60px_rgba(251,191,36,0.25)] transition-all duration-300">
+             <div className="absolute -right-12 top-6 rotate-45 bg-amber-400 text-black text-xs font-bold px-12 py-1 shadow-lg">BEST VALUE</div>
             <h3 className="text-xl font-bold text-white mb-2">Yearly Pro</h3>
             <p className="text-gray-400 text-sm mb-6">All features. Maximum savings.</p>
-            <div className="text-3xl font-bold text-amber-400 mb-8">£49.99<span className="text-sm font-normal text-gray-500">/yr</span></div>
+            <div className="text-4xl font-bold text-amber-400 mb-8">£49.99<span className="text-sm font-normal text-gray-500">/yr</span></div>
             
             <ul className="space-y-4 mb-8 flex-grow">
               <FeatureItem text="Everything in Pro" active={true} highlight color="tertiary" />
@@ -104,7 +104,7 @@ const Payments = () => {
               href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
               target="_blank"
               rel="noreferrer"
-              className="w-full inline-block text-center py-3 rounded bg-amber-400 text-black font-bold hover:bg-amber-300 transition-colors shadow-[0_0_20px_rgba(251,191,36,0.3)]"
+              className="w-full inline-block text-center py-4 rounded bg-amber-400 text-black font-bold hover:bg-amber-300 transition-colors shadow-[0_0_20px_rgba(251,191,36,0.3)] hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] transform hover:scale-[1.02]"
             >
               Subscribe Yearly
             </a>
