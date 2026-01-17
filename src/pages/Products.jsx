@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Check, Star, Download } from 'lucide-react'
+import { Check, Star, Download, Lock } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const Products = () => {
@@ -52,6 +52,24 @@ const Products = () => {
       features: ['Offline Guide', 'No Internet Required', 'Mobile Only'],
       badges: ['🟡 Coming Soon', '📱 Mobile Only'],
       type: 'coming-soon'
+    },
+    {
+      id: 'ai-inbox',
+      name: 'AI Inbox & Admin Automation',
+      price: 'Yearly Pro Exclusive',
+      desc: 'Automate your inbox and administrative workload using intelligent AI workflows. Instantly prioritise messages, reduce manual admin tasks, and keep operations running smoothly without constant supervision.',
+      tagline: 'Turn chaos into control — automatically.',
+      features: ['Intelligent Workflows', 'Message Prioritisation', 'Admin Automation'],
+      type: 'yearly-exclusive'
+    },
+    {
+      id: 'lead-auto',
+      name: 'Lead Automation',
+      price: 'Yearly Pro Exclusive',
+      desc: 'Capture, qualify, and manage leads automatically with smart automation. Reduce manual follow-ups, improve response speed, and ensure no opportunity slips through the cracks.',
+      tagline: 'Let automation do the follow-up.',
+      features: ['Lead Capture', 'Auto Qualification', 'Smart Follow-ups'],
+      type: 'yearly-exclusive'
     }
   ]
 
@@ -162,6 +180,19 @@ const ProductCard = ({ product }) => (
         <button disabled className="block w-full text-center py-3 rounded border border-white/10 bg-white/5 text-gray-500 cursor-not-allowed font-bold">
           Coming Soon
         </button>
+      ) : product.type === 'yearly-exclusive' ? (
+        <>
+          <div className="mb-4 flex items-center justify-center gap-2 text-sm text-gray-400">
+            <Lock size={14} />
+            <span>Included with CoreLink Yearly Pro</span>
+          </div>
+          <Link 
+            to="/payments" 
+            className="block w-full text-center py-3 rounded border font-bold transition-all duration-300 bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black"
+          >
+            Upgrade to Yearly Pro
+          </Link>
+        </>
       ) : (
         <Link 
           to={product.type === 'subscription' ? "/payments" : "/contact"} 
