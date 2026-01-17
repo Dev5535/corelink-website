@@ -1372,7 +1372,7 @@ const Merch = () => {
 
       return true
     })
-  }, [selectedCategory, selectedSubCategory, selectedType, selectedSeries, selectedSize])
+  }, [selectedCategory, selectedSubCategory, selectedType, selectedSeries, selectedSize, isAdmin])
 
   // Get available sizes based on current category selection
   const availableSizes = useMemo(() => {
@@ -1864,5 +1864,7 @@ const MerchCard = forwardRef(({ item }, ref) => {
     </motion.div>
   )
 })
+
+MerchCard.displayName = 'MerchCard'
 
 export default Merch

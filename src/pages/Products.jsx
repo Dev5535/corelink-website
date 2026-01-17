@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Check, Star, Download, Lock } from 'lucide-react'
+import { Check, Star, Lock } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const Products = () => {

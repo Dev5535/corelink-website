@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Heart, Shield, Cpu, Info } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 
 const AstraAngel = () => {
   const [isOpen, setIsOpen] = useState(false);

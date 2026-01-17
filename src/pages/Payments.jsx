@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { Check, X, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -51,9 +50,14 @@ const Payments = () => {
               <FeatureItem text="Astra Angel Assistant" active={false} />
             </ul>
 
-            <button className="w-full py-3 rounded bg-core-primary text-black font-bold hover:bg-cyan-400 transition-colors shadow-[0_0_20px_rgba(0,240,255,0.3)]">
+            <a
+              href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full inline-block text-center py-3 rounded bg-core-primary text-black font-bold hover:bg-cyan-400 transition-colors shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+            >
               Subscribe Core
-            </button>
+            </a>
           </div>
 
           {/* Pro Tier */}
@@ -71,9 +75,14 @@ const Payments = () => {
               <FeatureItem text="Priority Support" active={true} highlight color="secondary" />
             </ul>
 
-            <button className="w-full py-3 rounded bg-core-secondary text-white font-bold hover:bg-purple-600 transition-colors shadow-[0_0_20px_rgba(188,19,254,0.3)]">
+            <a
+              href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full inline-block text-center py-3 rounded bg-core-secondary text-white font-bold hover:bg-purple-600 transition-colors shadow-[0_0_20px_rgba(188,19,254,0.3)]"
+            >
               Subscribe Pro
-            </button>
+            </a>
           </div>
 
           {/* Yearly Tier */}
@@ -81,7 +90,7 @@ const Payments = () => {
              <div className="absolute -right-12 top-6 rotate-45 bg-amber-400 text-black text-xs font-bold px-12 py-1">BEST VALUE</div>
             <h3 className="text-xl font-bold text-white mb-2">Yearly Pro</h3>
             <p className="text-gray-400 text-sm mb-6">All features. Maximum savings.</p>
-            <div className="text-3xl font-bold text-amber-400 mb-8">£29.99<span className="text-sm font-normal text-gray-500">/yr</span></div>
+            <div className="text-3xl font-bold text-amber-400 mb-8">£49.99<span className="text-sm font-normal text-gray-500">/yr</span></div>
             
             <ul className="space-y-4 mb-8 flex-grow">
               <FeatureItem text="Everything in Pro" active={true} highlight color="tertiary" />
@@ -91,9 +100,14 @@ const Payments = () => {
               <FeatureItem text="Astra Angel (Uncapped)" active={true} highlight color="tertiary" />
             </ul>
 
-            <button className="w-full py-3 rounded bg-amber-400 text-black font-bold hover:bg-amber-300 transition-colors shadow-[0_0_20px_rgba(251,191,36,0.3)]">
+            <a
+              href="https://corelinktech.lemonsqueezy.com/checkout/buy/8cb7e013-76ef-4871-b19e-a12b70a69978"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full inline-block text-center py-3 rounded bg-amber-400 text-black font-bold hover:bg-amber-300 transition-colors shadow-[0_0_20px_rgba(251,191,36,0.3)]"
+            >
               Subscribe Yearly
-            </button>
+            </a>
           </div>
         </div>
 
@@ -142,7 +156,7 @@ const Payments = () => {
         <div className="text-center border-t border-white/10 pt-8">
           <h4 className="text-white font-bold mb-4">Privacy & Data Usage</h4>
           <p className="text-gray-500 text-sm max-w-2xl mx-auto mb-6">
-            CoreLink tools operate on a "Local First" philosophy. Your diagnostic data is processed locally on your machine whenever possible. We do not sell your personal data to third parties.
+            CoreLink tools operate on a Local First philosophy. Your diagnostic data is processed locally on your machine whenever possible. We do not sell your personal data to third parties.
           </p>
           <div className="flex justify-center gap-6 text-sm">
             <Link to="/legal" className="text-core-primary hover:underline">Terms of Service</Link>

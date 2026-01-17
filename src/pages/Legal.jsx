@@ -53,14 +53,14 @@ const PrivacyContent = () => (
     
     <h3 className="text-xl font-bold text-white mt-8 mb-4">1. Local First Philosophy</h3>
     <p className="text-gray-400 mb-6">
-      CoreLink Tech operates on a strict "Local First" basis. Our diagnostic tools (Optimizer, Error Translator, Health Monitor) process your system data locally on your machine. We do not upload your personal files, system logs, or error dumps to our servers unless you explicitly opt-in for manual support.
+      CoreLink Tech operates on a strict &quot;Local First&quot; basis. Our diagnostic tools (Optimizer, Error Translator, Health Monitor) process your system data locally on your machine. We do not upload your personal files, system logs, or error dumps to our servers unless you explicitly opt-in for manual support.
     </p>
 
     <h3 className="text-xl font-bold text-white mt-8 mb-4">2. Data We Collect</h3>
     <ul className="list-disc pl-5 text-gray-400 space-y-2 mb-6">
       <li><strong>License Validation:</strong> We collect a hashed hardware ID to validate your subscription license.</li>
       <li><strong>Payment Info:</strong> All payments are processed securely via our payment provider. We do not store your credit card details.</li>
-      <li><strong>Usage Stats (Optional):</strong> If enabled, we collect anonymous usage statistics (e.g., "Optimizer run 5 times") to improve our products.</li>
+      <li><strong>Usage Stats (Optional):</strong> If enabled, we collect anonymous usage statistics (e.g., &quot;Optimizer run 5 times&quot;) to improve our products.</li>
     </ul>
 
     <h3 className="text-xl font-bold text-white mt-8 mb-4">3. Data Security</h3>
@@ -92,7 +92,7 @@ const TermsContent = () => (
 
     <h3 className="text-xl font-bold text-white mt-8 mb-4">4. Disclaimer</h3>
     <p className="text-gray-400 mb-6">
-      Our software is provided "as is". While we strive for perfection, CoreLink Tech makes no warranties, expressed or implied, regarding the reliability or accuracy of our diagnostic tools. Always backup your data before performing system optimizations.
+      Our software is provided &quot;as is&quot;. While we strive for perfection, CoreLink Tech makes no warranties, expressed or implied, regarding the reliability or accuracy of our diagnostic tools. Always backup your data before performing system optimizations.
     </p>
   </motion.div>
 )
