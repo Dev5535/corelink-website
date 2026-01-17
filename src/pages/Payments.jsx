@@ -58,6 +58,13 @@ const Payments = () => {
             >
               Subscribe Core
             </a>
+            <div className="text-center mt-3 text-[10px] text-gray-500 space-x-2">
+              <span>Cancel anytime</span>
+              <span>•</span>
+              <span>No hidden fees</span>
+              <span>•</span>
+              <span>Secure checkout via Lemon Squeezy</span>
+            </div>
           </div>
 
           {/* Pro Tier - Updated */}
@@ -83,13 +90,20 @@ const Payments = () => {
             >
               Subscribe Pro
             </a>
+            <div className="text-center mt-3 text-[10px] text-gray-500 space-x-2">
+              <span>Cancel anytime</span>
+              <span>•</span>
+              <span>No hidden fees</span>
+              <span>•</span>
+              <span>Secure checkout via Lemon Squeezy</span>
+            </div>
           </div>
 
           {/* Yearly Tier - Updated */}
           <div className="bg-core-surface border border-amber-400 rounded-2xl p-8 flex flex-col relative overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.15)] group hover:shadow-[0_0_60px_rgba(251,191,36,0.25)] transition-all duration-300">
              <div className="absolute -right-12 top-6 rotate-45 bg-amber-400 text-black text-xs font-bold px-12 py-1 shadow-lg">BEST VALUE</div>
             <h3 className="text-xl font-bold text-white mb-2">Yearly Pro</h3>
-            <p className="text-gray-400 text-sm mb-6">All features. Maximum savings.</p>
+            <p className="text-gray-400 text-sm mb-6">All features. Maximum savings. Includes all current & future CoreLinkTech products.</p>
             <div className="text-4xl font-bold text-amber-400 mb-8">£49.99<span className="text-sm font-normal text-gray-500">/yr</span></div>
             
             <ul className="space-y-4 mb-8 flex-grow">
@@ -108,7 +122,23 @@ const Payments = () => {
             >
               Subscribe Yearly
             </a>
+            <div className="text-center mt-3 text-[10px] text-gray-500 space-x-2">
+              <span>Cancel anytime</span>
+              <span>•</span>
+              <span>No hidden fees</span>
+              <span>•</span>
+              <span>Secure checkout via Lemon Squeezy</span>
+            </div>
           </div>
+        </div>
+
+        {/* Trust & Legitimacy */}
+        <div className="text-center mb-16 text-gray-500 text-sm flex flex-col md:flex-row justify-center gap-4 md:gap-8 items-center">
+          <span className="flex items-center gap-2"><Check size={16} className="text-core-primary" /> Built by CoreLinkTech</span>
+          <span className="hidden md:inline">•</span>
+          <span className="flex items-center gap-2"><Check size={16} className="text-core-primary" /> Designed for everyday users</span>
+          <span className="hidden md:inline">•</span>
+          <span className="flex items-center gap-2"><Check size={16} className="text-core-primary" /> Actively maintained & updated</span>
         </div>
 
         {/* DependencyWatch Special Section */}

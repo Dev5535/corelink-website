@@ -40,7 +40,7 @@ const Home = () => {
       {/* Features Grid */}
       <section className="py-20 bg-core-surface/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <FeatureCard 
               icon={<Zap className="text-core-primary" size={40} />}
               title="System Optimization"
@@ -56,6 +56,13 @@ const Home = () => {
               title="Error Translation"
               desc="Understand what went wrong. Plain-English explanations for complex errors."
             />
+          </div>
+
+          {/* More Coming Soon */}
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-gray-400 text-sm border border-white/10 bg-white/5 rounded-full px-6 py-2 inline-block">
+              🚀 More features and products are coming soon and will be included in Pro plans.
+            </p>
           </div>
         </div>
       </section>
