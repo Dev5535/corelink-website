@@ -43,6 +43,15 @@ const Products = () => {
       desc: 'Professional cybersecurity tool with PyUp Safety integration and OWASP Top 10 compliance checks.',
       features: ['Vulnerability Scan', 'PyUp Integration', 'OWASP Checks'],
       type: 'onetime'
+    },
+    {
+      id: 'ai-trading',
+      name: 'AI Trading System',
+      price: 'Coming Soon',
+      desc: 'offline AI Trading guide No Internet required',
+      features: ['Offline Guide', 'No Internet Required', 'Mobile Only'],
+      badges: ['🟡 Coming Soon', '📱 Mobile Only'],
+      type: 'coming-soon'
     }
   ]
 
@@ -64,6 +73,13 @@ const Products = () => {
       price: 'One-time',
       desc: 'Upgrade specific legacy plans or custom enterprise tier arrangements.',
       type: 'onetime'
+    },
+    {
+      name: 'Launch Risk Intelligence System',
+      price: 'Premium Plus',
+      desc: 'Deterministic launch risk analysis with digital twin auditing and compliance mapping, delivered in partnership with the Launch Risk Intelligence System platform.',
+      type: 'onetime',
+      contact: true
     },
     {
       name: 'Custom Private Product',
@@ -118,6 +134,16 @@ const ProductCard = ({ product }) => (
       <h3 className="text-xl font-bold text-white">{product.name}</h3>
       {product.id === 'optimizer' && <Star className="text-core-primary fill-core-primary" size={20} />}
     </div>
+
+    {product.badges && (
+      <div className="flex flex-wrap gap-2 mb-4">
+        {product.badges.map((badge, idx) => (
+          <span key={idx} className="px-2 py-1 text-xs font-medium rounded bg-white/5 text-core-secondary border border-white/10">
+            {badge}
+          </span>
+        ))}
+      </div>
+    )}
     
     <p className="text-gray-400 text-sm mb-6 flex-grow">{product.desc}</p>
     
@@ -132,16 +158,22 @@ const ProductCard = ({ product }) => (
 
     <div className="mt-auto">
       <div className="text-xl font-bold text-white mb-4">{product.price}</div>
-      <Link 
-        to={product.type === 'subscription' ? "/payments" : "/contact"} 
-        className={`block w-full text-center py-3 rounded border font-bold transition-all duration-300 ${
-          product.type === 'subscription' 
-            ? 'bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black' 
-            : 'bg-white/5 border-white/20 text-white hover:bg-white/10'
-        }`}
-      >
-        {product.type === 'subscription' ? 'Subscribe Now' : 'Purchase License'}
-      </Link>
+      {product.type === 'coming-soon' ? (
+        <button disabled className="block w-full text-center py-3 rounded border border-white/10 bg-white/5 text-gray-500 cursor-not-allowed font-bold">
+          Coming Soon
+        </button>
+      ) : (
+        <Link 
+          to={product.type === 'subscription' ? "/payments" : "/contact"} 
+          className={`block w-full text-center py-3 rounded border font-bold transition-all duration-300 ${
+            product.type === 'subscription' 
+              ? 'bg-core-primary/10 border-core-primary text-core-primary hover:bg-core-primary hover:text-black' 
+              : 'bg-white/5 border-white/20 text-white hover:bg-white/10'
+          }`}
+        >
+          {product.type === 'subscription' ? 'Subscribe Now' : 'Purchase License'}
+        </Link>
+      )}
     </div>
   </motion.div>
 )
