@@ -1,10 +1,29 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
 
 const Home = () => {
   return (
     <div className="relative">
+      <Helmet>
+        <title>CoreLink Tech - Professional System Optimization & Error Translation</title>
+        <meta name="description" content="Translate complexity into clarity. Protect, optimize, and empower your PC with CoreLink Tech's professional grade tools for system diagnostics and error translation." />
+        <link rel="canonical" href="https://corelink-website.onrender.com/" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "CoreLink Tech",
+              "url": "https://corelink-website.onrender.com/",
+              "logo": "https://corelink-website.onrender.com/assets/neon_angel.png",
+              "description": "Professional software suite for system optimization, error translation, and personal intelligence tools.",
+              "sameAs": []
+            }
+          `}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <section className="relative pt-20 pb-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

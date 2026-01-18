@@ -1,9 +1,15 @@
 import { Check, X, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 const Payments = () => {
   return (
     <div className="pt-10 pb-20">
+      <Helmet>
+        <title>Pricing & Plans - CoreLink Tech</title>
+        <meta name="description" content="Transparent pricing for CoreLink Tech software. Choose from Core, Pro, or Yearly plans. Secure checkout, cancel anytime, and 14-day refund policy." />
+        <link rel="canonical" href="https://corelink-website.onrender.com/payments" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-display font-bold text-white mb-4">Invest in Your Digital Ecosystem</h1>

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Check, Star, Lock } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 const Products = () => {
   const software = [
@@ -127,6 +128,27 @@ const Products = () => {
 
   return (
     <div className="pt-10 pb-20">
+      <Helmet>
+        <title>Products & Software Suite - CoreLink Tech</title>
+        <meta name="description" content="Explore CoreLink Tech's software suite including System Optimizer, Windows Error Translator, and Astra Angel Assistant. Professional tools for peak PC performance." />
+        <link rel="canonical" href="https://corelink-website.onrender.com/products" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "CoreLink Optimizer",
+              "operatingSystem": "Windows",
+              "applicationCategory": "UtilitiesApplication",
+              "offers": {
+                "@type": "Offer",
+                "price": "4.99",
+                "priceCurrency": "GBP"
+              }
+            }
+          `}
+        </script>
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-display font-bold text-white mb-4">Software Suite</h1>

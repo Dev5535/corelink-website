@@ -1,9 +1,15 @@
 import { motion } from 'framer-motion'
 import { Mail, MessageSquare, Send } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
 
 const Contact = () => {
   return (
     <div className="pt-10 pb-20">
+      <Helmet>
+        <title>Contact Us - CoreLink Tech</title>
+        <meta name="description" content="Get in touch with CoreLink Tech. Support, business inquiries, and custom service requests. Email us or find us on Discord." />
+        <link rel="canonical" href="https://corelink-website.onrender.com/contact" />
+      </Helmet>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-display font-bold text-white mb-4">Contact Me</h1>
