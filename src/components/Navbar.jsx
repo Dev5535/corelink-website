@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ShoppingBag, Cpu, CreditCard, Mail, Home } from 'lucide-react'
+import { Menu, X, Cpu, CreditCard, Mail, Home } from 'lucide-react'
 import { useState } from 'react'
 
 const Navbar = () => {

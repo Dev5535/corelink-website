@@ -15,6 +15,8 @@ const MIME_TYPES = {
   '.js': 'text/javascript',
   '.css': 'text/css',
   '.json': 'application/json',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.gif': 'image/gif',
@@ -34,6 +36,15 @@ const server = http.createServer((req, res) => {
   if (!ext) {
     filePath = path.join(DIST_DIR, 'index.html');
     ext = '.html';
+  }
+
+  // Explicitly serve robots.txt and sitemap.xml from build output
+  if (req.url === '/robots.txt') {
+    filePath = path.join(DIST_DIR, 'robots.txt');
+    ext = '.txt';
+  } else if (req.url === '/sitemap.xml') {
+    filePath = path.join(DIST_DIR, 'sitemap.xml');
+    ext = '.xml';
   }
 
   fs.readFile(filePath, (err, content) => {
