@@ -13,17 +13,24 @@ const UmamiAnalytics = () => {
     const scriptId = 'umami-script';
     const websiteId = import.meta.env.VITE_UMAMI_WEBSITE_ID;
     
-    if (websiteId) {
-      if (!document.getElementById(scriptId)) {
-        const script = document.createElement('script');
-        script.id = scriptId;
-        script.src = 'https://analytics.umami.is/script.js';
-        script.defer = true;
-        script.setAttribute('data-website-id', websiteId);
-        document.head.appendChild(script);
-        
-        console.log('UMAMI ANALYTICS: ACTIVE');
+    try {
+      const canUseDOM = typeof window !== 'undefined' && typeof document !== 'undefined';
+      const hasStyleAPI = canUseDOM && document.documentElement && document.documentElement.style;
+      if (websiteId && canUseDOM && hasStyleAPI) {
+        if (!document.getElementById(scriptId)) {
+          const script = document.createElement('script');
+          script.id = scriptId;
+          script.src = 'https://analytics.umami.is/script.js';
+          script.defer = true;
+          script.setAttribute('data-website-id', websiteId);
+          document.head.appendChild(script);
+          console.log('UMAMI ANALYTICS: ACTIVE');
+        }
+      } else {
+        console.warn('UMAMI ANALYTICS: Skipped (DOM/style API not available or website ID missing)');
       }
+    } catch (err) {
+      console.error('UMAMI ANALYTICS: initialization failed', err);
     }
   }, []);
 
