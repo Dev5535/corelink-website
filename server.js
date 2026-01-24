@@ -28,6 +28,41 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
+  // PRIORITY 1: Explicitly handle robots.txt to ensure 200 OK and text/plain
+  // This prevents any SPA routing hijack
+  if (req.url === '/robots.txt') {
+    const robotsPath = path.join(DIST_DIR, 'robots.txt');
+    fs.readFile(robotsPath, (err, content) => {
+      if (err) {
+        console.error(`[ERROR] Failed to serve robots.txt: ${err.message}`);
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(content, 'utf-8');
+      console.log(`[VISIT] ${req.method} ${req.url} 200 - Served robots.txt`);
+    });
+    return;
+  }
+
+  // PRIORITY 2: Explicitly handle sitemap.xml
+  if (req.url === '/sitemap.xml') {
+    const sitemapPath = path.join(DIST_DIR, 'sitemap.xml');
+    fs.readFile(sitemapPath, (err, content) => {
+      if (err) {
+        console.error(`[ERROR] Failed to serve sitemap.xml: ${err.message}`);
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'application/xml' });
+      res.end(content, 'utf-8');
+      console.log(`[VISIT] ${req.method} ${req.url} 200 - Served sitemap.xml`);
+    });
+    return;
+  }
+
   // Handle request
   let filePath = path.join(DIST_DIR, req.url === '/' ? 'index.html' : req.url);
   let ext = path.extname(filePath);
@@ -36,15 +71,6 @@ const server = http.createServer((req, res) => {
   if (!ext) {
     filePath = path.join(DIST_DIR, 'index.html');
     ext = '.html';
-  }
-
-  // Explicitly serve robots.txt and sitemap.xml from build output
-  if (req.url === '/robots.txt') {
-    filePath = path.join(DIST_DIR, 'robots.txt');
-    ext = '.txt';
-  } else if (req.url === '/sitemap.xml') {
-    filePath = path.join(DIST_DIR, 'sitemap.xml');
-    ext = '.xml';
   }
 
   fs.readFile(filePath, (err, content) => {
