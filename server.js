@@ -28,6 +28,40 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
+  const host = (req.headers.host || '').toLowerCase().split(':')[0];
+  const isStandby = host === 'corelinkautomation.com' || host === 'www.corelinkautomation.com';
+
+  if (isStandby) {
+    if (req.url === '/robots.txt') {
+      const robotsStandbyPath = path.join(DIST_DIR, 'robots-standby.txt');
+      fs.readFile(robotsStandbyPath, (err, content) => {
+        if (err) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Not Found');
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end(content, 'utf-8');
+      });
+      return;
+    }
+    if (req.url === '/sitemap.xml') {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not Found');
+      return;
+    }
+    const standbyPath = path.join(DIST_DIR, 'standby.html');
+    fs.readFile(standbyPath, (err, content) => {
+      if (err) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(content, 'utf-8');
+    });
+    return;
+  }
   // PRIORITY 1: Explicitly handle robots.txt to ensure 200 OK and text/plain
   // This prevents any SPA routing hijack
   if (req.url === '/robots.txt') {
