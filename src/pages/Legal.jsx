@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet-async'
 
 const Legal = () => {
   const [activeTab, setActiveTab] = useState('privacy')
+  const baseUrl = 'https://corelinkautomation.com'
 
   return (
     <div className="pt-10 pb-20">
+      <Helmet>
+        <title>Legal & Policies - CoreLink Tech</title>
+        <meta name="description" content="CoreLink Tech legal and compliance: Privacy Policy and Terms of Service." />
+        <link rel="canonical" href={`${baseUrl}/legal`} />
+      </Helmet>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-display font-bold text-white mb-4">Legal & Compliance</h1>

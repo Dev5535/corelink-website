@@ -1,6 +1,7 @@
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+ 
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,39 +28,67 @@ const MIME_TYPES = {
   '.ttf': 'font/ttf',
 };
 
+const ACTIVE_DOMAIN = (process.env.ACTIVE_DOMAIN || 'corelink-website.onrender.com').toLowerCase();
+const STANDBY_DOMAIN = (process.env.STANDBY_DOMAIN || 'corelinkautomation.com').toLowerCase();
+const SWITCH_REASON = process.env.SWITCH_REASON || 'domain cutover';
+let switchedAt = null;
+
+function logEvent(type, payload = {}) {
+  const ts = new Date().toISOString();
+  console.log(JSON.stringify({ ts, type, ...payload }));
+}
+
+function startPromotions(domain) {
+  logEvent('core_pulse_start', { domain });
+}
+
+function stopPromotions(domain) {
+  logEvent('core_pulse_stop', { domain });
+}
+
+ 
+
+ 
+
+ 
+
+ 
+
+const ROUTES_FOR_SITEMAP = ['/', '/products', '/payments', '/contact', '/legal'];
+function generateSitemap(baseUrl, publish = true) {
+  const urlset = ROUTES_FOR_SITEMAP.map((r) => `  <url><loc>https://${baseUrl}${r}</loc><changefreq>weekly</changefreq></url>`).join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlset}\n</urlset>\n`;
+  const filename = publish ? 'sitemap.xml' : 'sitemap-standby.xml';
+  try {
+    fs.writeFileSync(path.join(DIST_DIR, filename), xml, 'utf-8');
+    logEvent(publish ? 'sitemap_generated' : 'sitemap_prepared', { base: baseUrl, count: ROUTES_FOR_SITEMAP.length, file: filename });
+  } catch (e) {
+    logEvent('sitemap_error', { error: e.message, file: filename });
+  }
+}
+
+async function orchestrateSwitch() {
+  stopPromotions(ACTIVE_DOMAIN);
+  startPromotions(STANDBY_DOMAIN);
+  switchedAt = new Date().toISOString();
+  logEvent('domain_switched', { from: ACTIVE_DOMAIN, to: STANDBY_DOMAIN, reason: SWITCH_REASON, at: switchedAt });
+  generateSitemap(STANDBY_DOMAIN, true);
+}
+
+await orchestrateSwitch();
+
 const server = http.createServer((req, res) => {
   const host = (req.headers.host || '').toLowerCase().split(':')[0];
-  const isStandby = host === 'corelinkautomation.com' || host === 'www.corelinkautomation.com';
+  if (host === ACTIVE_DOMAIN || host === `www.${ACTIVE_DOMAIN}`) {
+    const location = `https://${STANDBY_DOMAIN}${req.url}`;
+    res.writeHead(301, { Location: location });
+    res.end();
+    logEvent('redirect_301', { from: host, to: STANDBY_DOMAIN, path: req.url });
+    return;
+  }
+  const standbyActive = false;
 
-  if (isStandby) {
-    if (req.url === '/robots.txt') {
-      const robotsStandbyPath = path.join(DIST_DIR, 'robots-standby.txt');
-      fs.readFile(robotsStandbyPath, (err, content) => {
-        if (err) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('Not Found');
-          return;
-        }
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end(content, 'utf-8');
-      });
-      return;
-    }
-    if (req.url === '/sitemap.xml') {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Not Found');
-      return;
-    }
-    const standbyPath = path.join(DIST_DIR, 'standby.html');
-    fs.readFile(standbyPath, (err, content) => {
-      if (err) {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Not Found');
-        return;
-      }
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(content, 'utf-8');
-    });
+  if (standbyActive) {
     return;
   }
   // PRIORITY 1: Explicitly handle robots.txt to ensure 200 OK and text/plain
@@ -135,8 +164,6 @@ const server = http.createServer((req, res) => {
       res.end(content, 'utf-8');
     }
 
-    // LOGGING TO STDOUT (Captured by Render)
-    // Filter out asset requests to only log human visits (HTML pages or root)
     if (!ext || ext === '.html') {
        console.log(`[VISIT] ${req.method} ${req.url} ${statusCode} - IP: ${req.headers['x-forwarded-for'] || req.socket.remoteAddress}`);
     }
