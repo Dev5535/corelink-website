@@ -16,6 +16,21 @@ const AstraAngel = () => {
   const [mode, setMode] = useState('general'); // general, tech, wellbeing
   const messagesEndRef = useRef(null);
 
+  const animationsEnabled = (() => {
+    try {
+      const canUseDOM = typeof window !== 'undefined' && typeof document !== 'undefined';
+      if (!canUseDOM || !document.createElement) return false;
+      const el = document.createElement('div');
+      return !!(el && el.style && typeof el.style.setProperty === 'function');
+    } catch {
+      return false;
+    }
+  })();
+
+  const MotionDiv = animationsEnabled ? motion.div : 'div';
+  const MotionButton = animationsEnabled ? motion.button : 'button';
+  const Animate = animationsEnabled ? AnimatePresence : ({ children }) => <>{children}</>;
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -108,12 +123,14 @@ const AstraAngel = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      <AnimatePresence>
+      <Animate>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          <MotionDiv
+            {...(animationsEnabled ? {
+              initial: { opacity: 0, y: 20, scale: 0.9 },
+              animate: { opacity: 1, y: 0, scale: 1 },
+              exit: { opacity: 0, y: 20, scale: 0.9 }
+            } : {})}
             className="bg-core-surface/95 backdrop-blur-xl border border-core-primary/30 rounded-2xl w-[350px] h-[500px] shadow-[0_0_30px_rgba(188,19,254,0.2)] flex flex-col mb-4 overflow-hidden"
           >
             {/* Header */}
@@ -174,13 +191,15 @@ const AstraAngel = () => {
                 <Send size={18} />
               </button>
             </div>
-          </motion.div>
+          </MotionDiv>
         )}
-      </AnimatePresence>
+      </Animate>
 
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+      <MotionButton
+        {...(animationsEnabled ? {
+          whileHover: { scale: 1.05 },
+          whileTap: { scale: 0.95 }
+        } : {})}
         onClick={() => setIsOpen(!isOpen)}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(188,19,254,0.4)] transition-colors border border-core-primary/50 overflow-hidden ${
           isOpen ? 'bg-core-surface text-white' : 'bg-core-surface/90 backdrop-blur-sm'
@@ -195,7 +214,7 @@ const AstraAngel = () => {
             className="w-full h-full object-cover p-1"
           />
         )}
-      </motion.button>
+      </MotionButton>
     </div>
   );
 };
