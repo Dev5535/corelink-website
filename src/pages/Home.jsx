@@ -4,20 +4,22 @@ import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 
 const Home = () => {
+  const baseDomain = import.meta.env.VITE_ACTIVE_DOMAIN || (typeof window !== 'undefined' ? window.location.host : 'corelink-website.onrender.com')
+  const baseUrl = `https://${baseDomain}`
   return (
     <div className="relative">
       <Helmet>
         <title>CoreLink Tech - Professional System Optimization & Error Translation</title>
         <meta name="description" content="Translate complexity into clarity. Protect, optimize, and empower your PC with CoreLink Tech's professional grade tools for system diagnostics and error translation." />
-        <link rel="canonical" href="https://corelink-website.onrender.com/" />
+        <link rel="canonical" href={`${baseUrl}/`} />
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "CoreLink Tech",
-              "url": "https://corelink-website.onrender.com/",
-              "logo": "https://corelink-website.onrender.com/assets/neon_angel.png",
+              "url": "${baseUrl}/",
+              "logo": "${baseUrl}/assets/neon_angel.png",
               "description": "Professional software suite for system optimization, error translation, and personal intelligence tools.",
               "sameAs": []
             }

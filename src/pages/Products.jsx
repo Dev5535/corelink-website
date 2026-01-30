@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 
 const Products = () => {
+  const baseDomain = import.meta.env.VITE_ACTIVE_DOMAIN || (typeof window !== 'undefined' ? window.location.host : 'corelink-website.onrender.com')
+  const baseUrl = `https://${baseDomain}`
   const software = [
     {
       id: 'optimizer',
@@ -131,7 +133,7 @@ const Products = () => {
       <Helmet>
         <title>Products & Software Suite - CoreLink Tech</title>
         <meta name="description" content="Explore CoreLink Tech's software suite including System Optimizer, Windows Error Translator, and Astra Angel Assistant. Professional tools for peak PC performance." />
-        <link rel="canonical" href="https://corelink-website.onrender.com/products" />
+        <link rel="canonical" href={`${baseUrl}/products`} />
         <script type="application/ld+json">
           {`
             {

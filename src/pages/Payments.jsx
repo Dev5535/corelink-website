@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 
 const Payments = () => {
+  const baseDomain = import.meta.env.VITE_ACTIVE_DOMAIN || (typeof window !== 'undefined' ? window.location.host : 'corelink-website.onrender.com')
+  const baseUrl = `https://${baseDomain}`
   return (
     <div className="pt-10 pb-20">
       <Helmet>
         <title>Pricing & Plans - CoreLink Tech</title>
         <meta name="description" content="Transparent pricing for CoreLink Tech software. Choose from Core, Pro, or Yearly plans. Secure checkout, cancel anytime, and 14-day refund policy." />
-        <link rel="canonical" href="https://corelink-website.onrender.com/payments" />
+        <link rel="canonical" href={`${baseUrl}/payments`} />
       </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
