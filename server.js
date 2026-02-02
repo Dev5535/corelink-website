@@ -1,8 +1,10 @@
 import http from 'http';
+import https from 'https';
 import fs from 'fs';
 import path from 'path';
  
 import { fileURLToPath } from 'url';
+import qrcode from 'qrcode-terminal';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -126,6 +128,82 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // PRIORITY 3: Direct APK download with correct content-type
+  if (req.url === '/download/corelinktech.apk') {
+    const candidates = [
+      path.join(__dirname, 'android', 'app', 'build', 'outputs', 'apk', 'release', 'app-release.apk'),
+      path.join(__dirname, 'public', 'corelinktech.apk'),
+      path.join(DIST_DIR, 'corelinktech.apk'),
+    ];
+    (function tryNext(i) {
+      if (i >= candidates.length) {
+        const remote = process.env.APK_URL;
+        if (remote && /^https?:\/\//i.test(remote)) {
+          try {
+            res.writeHead(200, {
+              'Content-Type': 'application/vnd.android.package-archive',
+              'Content-Disposition': 'attachment; filename="CoreLinkTech.apk"'
+            });
+            const getter = remote.startsWith('https://') ? https.get : http.get;
+            const request = getter(remote, (proxyRes) => {
+              const code = proxyRes.statusCode || 200;
+              if (code >= 300 && code < 400 && proxyRes.headers && proxyRes.headers.location) {
+                res.writeHead(302, { Location: proxyRes.headers.location });
+                res.end();
+                console.log(`[VISIT] ${req.method} ${req.url} 302 - Redirected to ${proxyRes.headers.location}`);
+                return;
+              }
+              if (code !== 200) {
+                res.writeHead(302, { Location: remote });
+                res.end();
+                console.log(`[WARN] Remote APK returned ${code}. Redirecting user to ${remote}`);
+                return;
+              }
+              proxyRes.pipe(res);
+              console.log(`[VISIT] ${req.method} ${req.url} 200 - Streamed APK from ${remote}`);
+            });
+            request.on('error', (e) => {
+              console.error(`[ERROR] Remote APK stream failed: ${e.message}`);
+              res.writeHead(302, { Location: remote });
+              res.end();
+            });
+            return;
+          } catch (e) {
+            console.error(`[ERROR] Remote APK handling error: ${e.message}`);
+          }
+        }
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('APK not found. Set APK_URL to a remote .apk or place corelinktech.apk in public/.');
+        return;
+      }
+      const apkPath = candidates[i];
+      fs.stat(apkPath, (stErr, stats) => {
+        if (stErr || !stats || !stats.isFile()) {
+          tryNext(i + 1);
+          return;
+        }
+        const stream = fs.createReadStream(apkPath);
+        res.writeHead(200, {
+          'Content-Type': 'application/vnd.android.package-archive',
+          'Content-Disposition': 'attachment; filename="CoreLinkTech.apk"',
+          'Content-Length': stats.size
+        });
+        stream.pipe(res);
+        console.log(`[VISIT] ${req.method} ${req.url} 200 - Served APK from ${apkPath}`);
+      });
+    })(0);
+    return;
+  }
+
+  // PRIORITY 4: QR page for easy scanning
+  if (req.url === '/qr') {
+    const url = `https://${STANDBY_DOMAIN}/download/corelinktech.apk`;
+    const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CoreLinkTech APK QR</title></head><body style="background:#050814;color:#e3e3ff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;"><div style="text-align:center"><h1 style="margin:0 0 16px">Scan to Download APK</h1><img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(url)}" /><p style="margin-top:12px"><a style="color:#24D8FF" href="${url}">${url}</a></p></div></body></html>`;
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(html, 'utf-8');
+    return;
+  }
+
   // Handle request
   let filePath = path.join(DIST_DIR, req.url === '/' ? 'index.html' : req.url);
   let ext = path.extname(filePath);
@@ -173,4 +251,13 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`CoreLink Server running on port ${PORT}`);
   console.log(`Serving static files from: ${DIST_DIR}`);
+  const url = `https://${STANDBY_DOMAIN}/download/corelinktech.apk`;
+  try {
+    qrcode.generate(url, { small: true });
+    console.log(`[QR] Scan the QR above or open: ${url}`);
+    console.log(`[QR Page] ${`http://localhost:${PORT}/qr`}`);
+  } catch (e) {
+    console.log(`[QR] Failed to render terminal QR: ${e.message}`);
+    console.log(`[QR] Use the QR page: http://localhost:${PORT}/qr`);
+  }
 });

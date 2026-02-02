@@ -1,0 +1,21 @@
+{
+  "appId": "com.corelinktech.app",
+  "appName": "CoreLinkTech",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "url": "https://corelinkautomation.com",
+    "cleartext": false,
+    "allowNavigation": [
+      "corelinkautomation.com",
+      "www.corelinkautomation.com"
+    ]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#050814",
+      "autoHide": true
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "appName": "CoreLink Tech",
+  "packageName": "com.corelinkautomation.app",
+  "platform": "android",
+  "buildType": "apk",
+  "webview": {
+    "startUrl": "https://corelinkautomation.com",
+    "javascript": true,
+    "cookies": true,
+    "domStorage": true,
+    "sessionPersistence": true,
+    "fileDownloads": true,
+    "internalLinksOnly": true,
+    "allowPopups": true,
+    "multipleWindows": true,
+    "deepLinkAllowlist": [
+      "https://corelinktech.lemonsqueezy.com/*",
+      "https://corelinkautomation.com/*"
+    ],
+    "pullToRefresh": false,
+    "backButtonHandling": "confirm-exit",
+    "orientation": "portrait"
+  },
+  "permissions": {
+    "internet": true,
+    "storage": true,
+    "camera": false,
+    "microphone": false,
+    "location": false
+  },
+  "splash": {
+    "enabled": true,
+    "durationMs": 1800,
+    "background": "#050814",
+    "logoCentered": true,
+    "asset": "public/assets/splash_corelinktech.svg"
+  },
+  "branding": {
+    "icon": "public/assets/neon_angel.png",
+    "theme": "dark"
+  },
+  "checkout": {
+    "lemonSqueezy": {
+      "enabled": true,
+      "openMode": "in_app",
+      "postPurchaseRedirectAllowed": true
+    }
+  },
+  "downloads": {
+    "allowZip": true,
+    "saveTo": "Downloads/CoreLinkTech",
+    "notifyOnComplete": true
+  },
+  "androidBuild": {
+    "abis": ["arm64-v8a"],
+    "minifyEnabled": true,
+    "shrinkResources": true,
+    "splitApkPerAbi": false,
+    "targetSdk": 34,
+    "minSdk": 24
+  }
+}

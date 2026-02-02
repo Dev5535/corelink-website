@@ -1,4 +1,3 @@
-node_modules/
 dist/
-build/
-coverage/
+android/
+node_modules/
