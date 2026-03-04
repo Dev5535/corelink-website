@@ -48,9 +48,25 @@ function stopPromotions(domain) {
   logEvent('core_pulse_stop', { domain });
 }
 
-const ROUTES_FOR_SITEMAP = ['/', '/products', '/payments', '/contact', '/legal'];
+const ROUTES_FOR_SITEMAP = [
+  { path: '/', priority: '1.0', changefreq: 'weekly' },
+  { path: '/products', priority: '0.9', changefreq: 'weekly' },
+  { path: '/saas-valuation-calculator', priority: '0.8', changefreq: 'monthly' },
+  { path: '/payments', priority: '0.8', changefreq: 'monthly' },
+  { path: '/contact', priority: '0.7', changefreq: 'monthly' },
+  { path: '/legal', priority: '0.5', changefreq: 'yearly' }
+];
+
 function generateSitemap(baseUrl, publish = true) {
-  const urlset = ROUTES_FOR_SITEMAP.map((r) => `  <url><loc>https://${baseUrl}${r}</loc><changefreq>weekly</changefreq></url>`).join('\n');
+  const urlset = ROUTES_FOR_SITEMAP.map((route) => {
+    return `  <url>
+    <loc>https://${baseUrl}${route.path}</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
+  </url>`;
+  }).join('\n');
+  
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlset}\n</urlset>\n`;
   const filename = publish ? 'sitemap.xml' : 'sitemap-standby.xml';
   try {
