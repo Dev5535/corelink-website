@@ -131,7 +131,8 @@ const AstraAngel = () => {
               animate: { opacity: 1, y: 0, scale: 1 },
               exit: { opacity: 0, y: 20, scale: 0.9 }
             } : {})}
-            className="bg-core-surface/95 backdrop-blur-xl border border-core-primary/30 rounded-2xl w-[350px] h-[500px] shadow-[0_0_30px_rgba(188,19,254,0.2)] flex flex-col mb-4 overflow-hidden"
+            className="bg-core-surface/95 backdrop-blur-xl border border-core-primary/30 rounded-2xl shadow-[0_0_30px_rgba(188,19,254,0.2)] flex flex-col mb-4 overflow-hidden"
+            style={{ width: 'clamp(320px, 92vw, 420px)', height: 'clamp(420px, 70vh, 640px)' }}
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-core-bg to-core-surface p-4 border-b border-white/10 flex justify-between items-center">
@@ -146,13 +147,13 @@ const AstraAngel = () => {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-core-primary/20 scrollbar-track-transparent">
+            <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4 scrollbar-thin scrollbar-thumb-core-primary/20 scrollbar-track-transparent">
               {messages.map((msg) => (
-                <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                    msg.sender === 'user' 
-                      ? 'bg-core-primary/20 text-white rounded-tr-sm border border-core-primary/20' 
-                      : 'bg-white/5 text-gray-200 rounded-tl-sm border border-white/5'
+                <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-end md:justify-start'}`}>
+                  <div className={`max-w-[85%] md:max-w-[80%] p-2.5 md:p-3 rounded-2xl text-sm ${
+                    msg.sender === 'user'
+                      ? 'bg-core-primary/20 text-white rounded-tr-sm border border-core-primary/20 text-right md:text-right'
+                      : 'bg-white/5 text-gray-200 rounded-tl-sm border border-white/5 text-right md:text-left'
                   }`}>
                     <p className="whitespace-pre-wrap">{msg.text}</p>
                   </div>
@@ -185,7 +186,7 @@ const AstraAngel = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Type a message..."
-                className="flex-1 bg-transparent border-none outline-none text-sm text-white placeholder-gray-500"
+                className="flex-1 bg-transparent border-none outline-none text-sm text-white placeholder-gray-500 text-right md:text-left"
               />
               <button onClick={handleSend} className="text-core-primary hover:text-white transition-colors">
                 <Send size={18} />

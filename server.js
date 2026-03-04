@@ -48,14 +48,6 @@ function stopPromotions(domain) {
   logEvent('core_pulse_stop', { domain });
 }
 
- 
-
- 
-
- 
-
- 
-
 const ROUTES_FOR_SITEMAP = ['/', '/products', '/payments', '/contact', '/legal'];
 function generateSitemap(baseUrl, publish = true) {
   const urlset = ROUTES_FOR_SITEMAP.map((r) => `  <url><loc>https://${baseUrl}${r}</loc><changefreq>weekly</changefreq></url>`).join('\n');

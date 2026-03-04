@@ -9,6 +9,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/', icon: <Home size={18} /> },
     { name: 'Products', path: '/products', icon: <Cpu size={18} /> },
+    { name: 'Valuation', path: '/saas-valuation-calculator', icon: <Cpu size={18} /> },
     { name: 'Payments', path: '/payments', icon: <CreditCard size={18} /> },
     { name: 'Contact', path: '/contact', icon: <Mail size={18} /> },
   ]

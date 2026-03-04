@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Legal from './pages/Legal';
 import AstraAngel from './components/AstraAngel';
 import UmamiAnalytics from './components/UmamiAnalytics';
+import SaasValuation from './pages/SaasValuation';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/payments" element={<Payments />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legal" element={<Legal />} />
+            <Route path="/saas-valuation-calculator" element={<SaasValuation />} />
           </Routes>
         </div>
         <Footer />

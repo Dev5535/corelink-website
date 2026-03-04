@@ -53,6 +53,12 @@ const Home = () => {
               >
                 Explore Software <ArrowRight size={20} />
               </Link>
+              <Link 
+                to="/saas-valuation-calculator" 
+                className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded hover:bg-white/10 transition-all duration-300 font-bold flex items-center gap-2"
+              >
+                SaaS Valuation Tool
+              </Link>
             </div>
           </motion.div>
         </div>

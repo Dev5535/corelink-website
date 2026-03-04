@@ -157,6 +157,9 @@ const Products = () => {
           <p className="text-gray-400 max-w-2xl mx-auto">
             Professional grade tools designed to translate complex system data into actionable insights.
           </p>
+          <p className="text-gray-400 max-w-2xl mx-auto mt-4">
+            New: Try our <Link to="/saas-valuation-calculator" className="text-core-primary underline">SaaS Valuation Calculator</Link> — a free, lightweight tool for indie hackers and founders.
+          </p>
         </div>
 
         {/* Software Grid */}
